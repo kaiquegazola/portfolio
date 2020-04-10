@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/widgets/social_button.dart';
@@ -8,14 +10,14 @@ class PrincipalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    ScreenUtil.init(context, width: 1880, height: 882, allowFontScaling: true);
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
             SizedBox(
-              height: 350,
+              height: ScreenUtil().setWidth(450),
               width: double.infinity,
               child: Container(
                 color: Colors.blue,
@@ -23,36 +25,43 @@ class PrincipalPage extends StatelessWidget {
             ),
             Center(
               child: Container(
-                width: size.width * 0.4,
-                margin: EdgeInsets.fromLTRB(16.0, 15.0, 16.0, 16.0),
+                width: MediaQuery.of(context).size.width * 0.8,
+                margin: EdgeInsets.only(top: ScreenUtil().setWidth(115)),
                 child: Column(
                   children: <Widget>[
                     Stack(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.fromLTRB(16, 125, 16, 16),
-                          margin: EdgeInsets.only(top: 125.0),
+                          padding: EdgeInsets.fromLTRB(
+                              ScreenUtil().setWidth(16),
+                              ScreenUtil().setWidth(125),
+                              ScreenUtil().setWidth(16),
+                              ScreenUtil().setWidth(16)),
+                          margin:
+                              EdgeInsets.only(top: ScreenUtil().setWidth(125)),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(5.0)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Container(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
-                                    Text(
+                                    AutoSizeText(
                                       "Kaique Gazola",
-                                      style: GoogleFonts.roboto(fontSize: 48),
+                                      style: GoogleFonts.roboto(
+                                          fontSize: ScreenUtil().setSp(48, allowFontScalingSelf: false)),
                                     ),
                                     ListTile(
                                       contentPadding: EdgeInsets.all(0),
-                                      title: Text(
+                                      title: AutoSizeText(
                                         "Mobile Developer",
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.robotoCondensed(
-                                            fontSize: 24),
+                                            fontSize: ScreenUtil().setSp(24, allowFontScalingSelf: false)),
                                       ),
                                       subtitle: Row(
                                         mainAxisAlignment:
@@ -62,7 +71,7 @@ class PrincipalPage extends StatelessWidget {
                                             Icons.location_on,
                                             color: Colors.grey,
                                           ),
-                                          Text(
+                                          AutoSizeText(
                                             "Santa Fé do Sul/SP",
                                             style: GoogleFonts.lato(),
                                           ),
@@ -72,7 +81,7 @@ class PrincipalPage extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10.0),
+                              SizedBox(height: ScreenUtil().setHeight(10)),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
@@ -81,23 +90,23 @@ class PrincipalPage extends StatelessWidget {
                                   SocialButton(
                                     icon: FontAwesomeIcons.facebook,
                                     iconColor: Colors.blue,
-                                    link:
-                                    'https://facebook.com/kaique.gazola',
+                                    iconSize: ScreenUtil().setSp(48),
+                                    link: 'https://facebook.com/kaique.gazola',
                                     tooltip: 'Facebook',
                                   ),
                                   SocialButton(
                                     icon: FontAwesomeIcons.github,
                                     iconColor: Colors.black,
-                                    link:
-                                    'https://github.com/kaiquegazola',
+                                    iconSize: ScreenUtil().setSp(48),
+                                    link: 'https://github.com/kaiquegazola',
                                     tooltip: 'GitHub',
                                   ),
                                   SocialButton(
                                     icon: FontAwesomeIcons.linkedinIn,
                                     iconColor: Colors.blue,
-                                    iconSize: 40,
+                                    iconSize: ScreenUtil().setSp(40),
                                     link:
-                                    'https://linkedin.com/in/kaique-gazola',
+                                        'https://linkedin.com/in/kaique-gazola',
                                     tooltip: 'LinkedIn',
                                   ),
                                 ],
@@ -107,8 +116,8 @@ class PrincipalPage extends StatelessWidget {
                         ),
                         Center(
                           child: Container(
-                            height: 250,
-                            width: 250,
+                            height: ScreenUtil().setWidth(250),
+                            width: ScreenUtil().setWidth(250),
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
@@ -119,10 +128,14 @@ class PrincipalPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20.0),
+                    SizedBox(height: ScreenUtil().setHeight(20)),
                   ],
                 ),
               ),
+            ),
+            AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
             ),
           ],
         ),
